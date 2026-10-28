@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="High Value Claims" icon-name="standard:insurance_policy">
+
+        <div class="dashboard">
+
+            <template if:true={claims}>
+
+                <template for:each={claims} for:item="claim">
+
+                    <div class="claim-card" key={claim.Id}>
+
+                        <div class="claim-header">
+                            <div>
+                                <h2>{claim.Claim_Number__c}</h2>
+                                <p>{claim.Claim_Type__c}</p>
+                            </div>
+
+                            <span class="status">
+                                {claim.Claim_Status__c}
+                            </span>
+                        </div>
+
+                        <div class="claim-details">
+
+                            <div>
+                                <span>Priority</span>
+                                <strong>{claim.Priority__c}</strong>
+                            </div>
+
+                            <div>
+                                <span>Estimated Damage</span>
+                                <strong>₹ {claim.Estimated_Damage__c}</strong>
+                            </div>
+
+                            <div>
+                                <span>Assessed Damage</span>
+                                <strong>₹ {claim.Assessed_Damage__c}</strong>
+                            </div>
+
+                            <div>
+                                <span>Eligible Amount</span>
+                                <strong>₹ {claim.Eligible_Claim_Amount__c}</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </template>
+
+            </template>
+
+            <template if:true={error}>
+                <div class="error">
+                    Unable to load claims.
+                </div>
+            </template>
+
+        </div>
+
+    </lightning-card>
+</template>
